@@ -7,7 +7,7 @@ import {DbConnect} from '../DbConnect.js';
 export async function get_DayParty(req,res){
     const db= DbConnect();
     const collection = await db.collection("day-party")
-    .find({}).sort({ events: -1}).limit(5).toArray()
+    .find({}).sort({ events: -1}).limit(0).toArray()
     .catch(err => {
         res.status(500).send(err);
         return
