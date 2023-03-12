@@ -1,4 +1,5 @@
 import { DbConnect } from "../DbConnect.js";
+import { ObjectId } from "mongodb";
 
 
 export async function get_FamilyEvents (req,res){
@@ -47,10 +48,11 @@ export async function post_FamilyEvents(req,res){
 
 
 export async function delete_FamilyEvents(req, res){
-    const {docName} = req.params
+    const {_id} = req.params
     const db = DbConnect();
     const collection = await db.collection("family-events")
-    .deleteOne( {id:Number(docName)})
+    .findOneAndDelete( {_id: new ObjectId(_id)})
+    .then(()=>get_FamilyEvents(res,res))
     .catch(err => {
         res.status(500).send(err);
         return

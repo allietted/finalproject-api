@@ -1,4 +1,5 @@
 import {DbConnect} from '../DbConnect.js';
+import { ObjectId } from 'mongodb';
 
 
 
@@ -50,10 +51,11 @@ export async function post_DayParty(req,res){
 
 
 export async function delete_DayParty(req, res){
-    const {docName} = req.params
+    const {_id} = req.params
     const db = DbConnect();
     const collection = await db.collection("day-party")
-    .deleteOne( {id:Number(docName)})
+    .findOneAndDelete( {_id: new ObjectId(_id)})
+    .then(()=>get_DayParty(res,res))
     .catch(err => {
         res.status(500).send(err);
         return

@@ -20,17 +20,17 @@ app.get('/', (req,res) => {
 app.get('/familyevents', get_FamilyEvents);
 app.post('/addfamilyevents', post_FamilyEvents);
 // //app.patch('/familyevents/:eventName', updateAllEvents);
- app.delete('/familyevents/:eventName',delete_FamilyEvents)
+ app.delete('/familyevents/:_id',delete_FamilyEvents)
 
 app.get('/ladiesnight', get_LadiesNight);
  app.post('/addladiesnight', post_LadiesNight);
 // //app.patch('/ladiesnight/:eventName', updateAllEvents);
- app.delete('/ladiesnight/:eventName',delete_LadiesNight)
+ app.delete('/ladiesnight/:_id',delete_LadiesNight)
 
 app.get('/dayparty', get_DayParty);
 app.post('/adddayparty', post_DayParty);
 // //app.patch('/dayparty/:eventName', updateAllEvents);
-app.delete('/dayparty/:eventName',delete_DayParty)
+app.delete('/dayparty/:_id',delete_DayParty)
 
 
 //https://final-project-api-ad.web.app

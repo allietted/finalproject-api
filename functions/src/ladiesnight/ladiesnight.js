@@ -1,4 +1,5 @@
 import {DbConnect} from '../DbConnect.js';
+import { ObjectId } from 'mongodb';
 
 
 
@@ -33,6 +34,13 @@ export async function post_LadiesNight(req,res){
     
 }
 
+// const { title, info, rating, review, image } = req.body
+//   if ((title.length < 1 || info.length < 1 || rating.length < 1 || review.length < 1 || image.length < 1)) {
+//     res.status(500).json({ message: "Input Fields are empty or too short!" })
+//     return
+//   }
+//   const newAnime = { title, info, rating, review, image, createdAt: new Date() }
+
 // export async function update_LadiesNight(req,res){
 //     const {docName} =req.params;
 //     const newDoc = req.body;
@@ -50,10 +58,11 @@ export async function post_LadiesNight(req,res){
 
 
 export async function delete_LadiesNight(req, res){
-    const {docName} = req.params
+    const {_id} = req.params
     const db = DbConnect();
     const collection = await db.collection("ladies-night")
-    .deleteOne( {id:Number(docName)})
+    .findOneAndDelete( {_id: new ObjectId(_id)})
+    .then(()=>get_LadiesNight(res,res))
     .catch(err => {
         res.status(500).send(err);
         return
