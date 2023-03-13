@@ -8,7 +8,7 @@ import { ObjectId } from 'mongodb';
 export async function get_LadiesNight (req,res){
     const db= DbConnect();
     const collection = await db.collection("ladies-night")
-    .find({}).sort({ events: -1}).limit(5).toArray()
+    .find({}).sort({ events: -1}).limit(0).toArray()
     .catch(err => {
         res.status(500).send(err);
         return
